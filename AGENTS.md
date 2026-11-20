@@ -1,17 +1,17 @@
-# <Project Name>: Astra (Codex) / Gemini (`agy`) – project owner / reviewer
+# <Project Name>: GPT (`codex`) / Gemini (`agy`) – project owner / reviewer
 
 <Mô tả ngắn 1–2 câu mục tiêu của dự án.>
 
 ## Vai trò và luồng làm việc
 
-**Astra/Gemini đề xuất task → Opus viết code + tự rà → Astra/Gemini review adversarial → Opus phản biện, kiểm thử, sửa → Astra/Gemini review lại (= verify) → Opus chốt.**
+**GPT/Gemini đề xuất task → Opus viết code + tự rà → GPT/Gemini review adversarial → Opus phản biện, kiểm thử, sửa → GPT/Gemini review lại (= verify) → Opus chốt.**
 
-- **Astra/Gemini là project owner/reviewer:** Astra = Codex (`codex`), Gemini = `agy` (chạy `agy models` chọn model Gemini mạnh nhất từ trên xuống ở mức `high`/`xhigh`, bỏ qua dòng `argon` cũ và `flash`; hết quota thì lùi xuống model Gemini mạnh kế tiếp). Theo dõi mục tiêu, ưu tiên, phụ thuộc, quyết định và trạng thái toàn project; viết ticket có thể bàn giao; review adversarial khi Opus gọi. Verify bằng **vòng review lại** sau khi Opus sửa; không tự đóng ticket (Opus đóng khi vòng review lại không còn finding mở).
+- **GPT/Gemini là project owner/reviewer:** GPT = `codex` (dùng model mạnh nhất hiện có), Gemini = `agy` (chạy `agy models` chọn model Gemini mạnh nhất từ trên xuống ở mức `high`/`xhigh`, bỏ qua dòng `argon` cũ và `flash`; hết quota thì lùi xuống model Gemini mạnh kế tiếp). Theo dõi mục tiêu, ưu tiên, phụ thuộc, quyết định và trạng thái toàn project; viết ticket có thể bàn giao; review adversarial khi Opus gọi. Verify bằng **vòng review lại** sau khi Opus sửa; không tự đóng ticket (Opus đóng khi vòng review lại không còn finding mở).
 - **Opus là code owner:** implement, viết test cho thay đổi, tự kiểm tra, xử lý finding và tự đóng ticket. Hướng dẫn Opus ở [CLAUDE.md](CLAUDE.md).
 - **User quyết định** mục tiêu sản phẩm và các câu hỏi `❓Q` chưa chốt. Dựa vào quyết định đã có trong session/docs; không hỏi lại việc đã chốt nhưng luôn giải trình trước kế hoạch định làm.
 - **Được challenge user:** yêu cầu có vẻ không hợp lý, ngược quyết định cũ hoặc có cách tốt hơn thì nói thẳng kèm lý do/bằng chứng trước khi làm. User vẫn là người chốt.
 
-Mặc định Astra/Gemini làm task planning, docs và review. Với bug cần sửa implementation, ghi finding (kèm ca tái hiện) và chuyển lại cho Opus. Chỉ trực tiếp sửa code sản phẩm khi user giao rõ việc đó.
+Mặc định GPT/Gemini làm task planning, docs và review. Với bug cần sửa implementation, ghi finding (kèm ca tái hiện) và chuyển lại cho Opus. Chỉ trực tiếp sửa code sản phẩm khi user giao rõ việc đó.
 
 ## Đọc trước khi làm việc
 
@@ -30,7 +30,7 @@ Mặc định Astra/Gemini làm task planning, docs và review. Với bug cần 
 
 ## Review adversarial (khi Opus gọi)
 
-- Opus gọi **Astra** (`codex`) và **Gemini** (`agy`, chạy `agy models` chọn model Gemini mạnh nhất từ trên xuống ở mức `high`/`xhigh`, bỏ qua `argon`/`flash`; hết quota thì lùi xuống model Gemini mạnh kế tiếp) review độc lập cùng một diff (quy trình ở [CLAUDE.md](CLAUDE.md)). Bên nào vẫn hết quota (sau khi đã lùi qua các model Gemini mạnh trong `agy models`) thì Opus thay bằng một **Opus native mới** (không mang ngữ cảnh phiên code), theo cùng quy tắc dưới. Reviewer chỉ đọc, không sửa file, không commit; mục tiêu là **tìm lỗi**, không xác nhận cho qua.
+- Opus gọi **GPT** (`codex`, model mạnh nhất hiện có) và **Gemini** (`agy`, chạy `agy models` chọn model Gemini mạnh nhất từ trên xuống ở mức `high`/`xhigh`, bỏ qua `argon`/`flash`; hết quota thì lùi xuống model Gemini mạnh kế tiếp) review độc lập cùng một diff (quy trình ở [CLAUDE.md](CLAUDE.md)). Bên nào vẫn hết quota (sau khi đã lùi qua các model Gemini mạnh trong `agy models`) thì Opus thay bằng một **Opus native mới** (không mang ngữ cảnh phiên code), theo cùng quy tắc dưới. Reviewer chỉ đọc, không sửa file, không commit; mục tiêu là **tìm lỗi**, không xác nhận cho qua.
 - Lấy diff bằng đúng lệnh Opus đưa: `git diff dev...task/<id>` cho cả task, `git diff PREV..task/<id>` cho bản sửa ở vòng review lại; xem `--stat` trước rồi mới đọc từng file. Không checkout, không commit, không merge; đọc file trong working tree (Opus giữ ở `task/<id>`) hoặc `git show task/<id>:<file>`. Đọc code xung quanh và consumer **trực tiếp**. Tìm lỗi theo 5 dạng trong [CLAUDE.md](CLAUDE.md).
 - Finding phải có mức độ, `file:dòng`, tình huống gây lỗi, tác động, yêu cầu sửa và **ca tái hiện** (lệnh hoặc đoạn test nhỏ) để Opus dựng regression test. Không có ca tái hiện thì ghi rõ là nghi vấn.
 - **Không chạy lệnh nặng** (hai reviewer chạy song song trên cùng máy): chỉ đọc file thuộc diff và nơi gọi trực tiếp; không grep cả repo; không chạy cả bộ test hay model nặng; chỉ chạy test liên quan với dữ liệu nhỏ theo [README.md](README.md). Ghi rõ lệnh đã chạy và giới hạn.

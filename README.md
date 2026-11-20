@@ -1,6 +1,6 @@
 # Project Template
 
-Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**Astra/Codex + Gemini/agy + Opus/Claude**) và bộ **Agent Skills** chuẩn hóa (tham khảo `mattpocock/skills`).
+Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**GPT (`codex`) + Gemini (`agy`) + Claude Code (`Opus`)**) và bộ **Agent Skills** chuẩn hóa (tham khảo `mattpocock/skills`).
 
 ## Khởi tạo dự án mới từ template
 
@@ -29,7 +29,7 @@ Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**Astra/Codex + G
 
 ```text
 .
-├── AGENTS.md                     # Hướng dẫn cho Codex (Astra) & Gemini/Antigravity (agy)
+├── AGENTS.md                     # Hướng dẫn cho GPT (codex) & Gemini (agy)
 ├── CLAUDE.md                     # Hướng dẫn cho Claude Code (Opus)
 ├── .agents/
 │   ├── skills/                   # Nguồn duy nhất của 13 cross-project skills (commit lên Git)
