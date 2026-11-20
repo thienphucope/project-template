@@ -15,7 +15,7 @@
 1. [README.md](README.md) & [docs/progress/README.md](docs/progress/README.md): mục tiêu, lệnh chạy/test, trạng thái và **Reminders**.
 2. Ticket trong `docs/progress/undone/<module>/<id>.md` (+ `<module>/README.md`) và thiết kế hiện hành ở `docs/progress/done/<module>/`.
 3. [docs/glossary.md](docs/glossary.md) (và `docs/adr/` nếu có).
-4. [Review workflow](docs/guides/review-workflow.md), [Git workflow](docs/guides/git-workflow.md), [Naming](docs/guides/naming.md).
+4. [Constraints](docs/guides/constraints.md), [Review workflow](docs/guides/review-workflow.md), [Naming](docs/guides/naming.md) và [Git workflow](docs/guides/git-workflow.md).
 5. Code và test liên quan; đối chiếu thực tế với mô tả ticket.
 
 ## Checklist khi thực hiện ticket
@@ -27,6 +27,6 @@
 
 ## Ràng buộc kỹ thuật
 
-- `<Điền ràng buộc kỹ thuật đặc thù của dự án: lock, migration, schema, env, v.v.>`
+- Đọc và tuân thủ đầy đủ các ràng buộc kỹ thuật đặc thù của dự án trong [constraints.md](docs/guides/constraints.md).
 
 # Say `I have read CLAUDE.md`

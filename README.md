@@ -11,7 +11,7 @@ Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**GPT (`codex`) +
    ```
    *(Trên Linux/macOS: `ln -s ../.agents/skills .claude/skills`)*
 3. Cập nhật thông tin riêng của dự án ở:
-   - [AGENTS.md](AGENTS.md) & [CLAUDE.md](CLAUDE.md): mô tả dự án, ràng buộc kỹ thuật, môi trường chạy.
+   - [AGENTS.md](AGENTS.md), [CLAUDE.md](CLAUDE.md) & [docs/guides/constraints.md](docs/guides/constraints.md): mô tả dự án, ràng buộc kỹ thuật, môi trường chạy.
    - [docs/progress/README.md](docs/progress/README.md): trạng thái ban đầu và Reminders.
    - [docs/glossary.md](docs/glossary.md): thêm thuật ngữ domain khi phát sinh.
    - Mục **Lệnh chạy & Test** ngay bên dưới.
@@ -41,7 +41,7 @@ Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**GPT (`codex`) +
 └── docs/
     ├── glossary.md               # Thuật ngữ domain dùng chung (1 file phẳng)
     ├── adr/                      # Architecture Decision Records (0001-slug.md)
-    ├── guides/                   # Quy ước Git, review workflow, đặt tên, hướng dẫn cố định
+    ├── guides/                   # Constraints, quy ước Git, review workflow, đặt tên
     └── progress/
         ├── README.md             # Bảng điều phối tiến độ + Reminders / Ghi chú nhanh
         ├── done/<module>/        # Task đã xong + thiết kế hiện hành theo từng module

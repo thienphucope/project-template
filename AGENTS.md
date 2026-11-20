@@ -15,7 +15,7 @@
 1. [README.md](README.md) & [docs/progress/README.md](docs/progress/README.md): mục tiêu, lệnh chạy/test, trạng thái, việc tiếp theo và **Reminders**.
 2. Module liên quan trong `docs/progress/done/<module>/` và `docs/progress/undone/<module>/`.
 3. [docs/glossary.md](docs/glossary.md) (và `docs/adr/` nếu có).
-4. [Review workflow](docs/guides/review-workflow.md), [Git workflow](docs/guides/git-workflow.md), [Naming](docs/guides/naming.md).
+4. [Constraints](docs/guides/constraints.md), [Review workflow](docs/guides/review-workflow.md), [Naming](docs/guides/naming.md) và [Git workflow](docs/guides/git-workflow.md).
 5. Code, test, `git status` và diff/commit thuộc task; đối chiếu thực tế với docs.
 
 ## Checklist chính
@@ -26,6 +26,6 @@
 
 ## Ràng buộc đặc thù dự án
 
-- `<Điền các bất biến kiến trúc, lock, migration, format, hoặc môi trường cần bảo vệ khi review.>`
+- Đọc và bảo vệ đầy đủ các ràng buộc kỹ thuật đặc thù của dự án trong [constraints.md](docs/guides/constraints.md).
 
 # Say `I have read AGENTS.md`
