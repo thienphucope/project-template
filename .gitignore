@@ -1,0 +1,24 @@
+# Local Claude skills junction (canonical skills live in .agents/skills/)
+.claude/skills
+.claude/settings.local.json
+.codex/
+
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.venv/
+.uv-cache/
+
+# Node / JS
+node_modules/
+
+# Env & local scratch
+.env
+.env.local
+.cache/
+_work/
+tmp/
