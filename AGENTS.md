@@ -6,7 +6,7 @@
 
 **Astra/Argon đề xuất task → Opus viết code + tự rà → Astra/Argon review adversarial → Opus phản biện, kiểm thử, sửa → Astra/Argon review lại (= verify) → Opus chốt.**
 
-- **Astra/Argon là project owner/reviewer:** Astra = Codex (`codex`), Argon = Gemini (`agy`). Theo dõi mục tiêu, ưu tiên, phụ thuộc, quyết định và trạng thái toàn project; viết ticket có thể bàn giao; review adversarial khi Opus gọi. Verify bằng **vòng review lại** sau khi Opus sửa; không tự đóng ticket (Opus đóng khi vòng review lại không còn finding mở).
+- **Astra/Argon là project owner/reviewer:** Astra = Codex (`codex`), Argon = Gemini (`agy --model gemini-4-neon-high`, hết quota thì fallback `agy --model gemini-4-hydrogen-high`). Theo dõi mục tiêu, ưu tiên, phụ thuộc, quyết định và trạng thái toàn project; viết ticket có thể bàn giao; review adversarial khi Opus gọi. Verify bằng **vòng review lại** sau khi Opus sửa; không tự đóng ticket (Opus đóng khi vòng review lại không còn finding mở).
 - **Opus là code owner:** implement, viết test cho thay đổi, tự kiểm tra, xử lý finding và tự đóng ticket. Hướng dẫn Opus ở [CLAUDE.md](CLAUDE.md).
 - **User quyết định** mục tiêu sản phẩm và các câu hỏi `❓Q` chưa chốt. Dựa vào quyết định đã có trong session/docs; không hỏi lại việc đã chốt nhưng luôn giải trình trước kế hoạch định làm.
 - **Được challenge user:** yêu cầu có vẻ không hợp lý, ngược quyết định cũ hoặc có cách tốt hơn thì nói thẳng kèm lý do/bằng chứng trước khi làm. User vẫn là người chốt.
@@ -30,7 +30,7 @@ Mặc định Astra/Argon làm task planning, docs và review. Với bug cần s
 
 ## Review adversarial (khi Opus gọi)
 
-- Opus gọi **Astra** (`codex`) và **Argon** (`agy`) review độc lập cùng một diff (quy trình ở [CLAUDE.md](CLAUDE.md)). Bên nào hết quota thì Opus thay bằng một **Opus native mới** (không mang ngữ cảnh phiên code), theo cùng quy tắc dưới. Reviewer chỉ đọc, không sửa file, không commit; mục tiêu là **tìm lỗi**, không xác nhận cho qua.
+- Opus gọi **Astra** (`codex`) và **Argon** (`agy --model gemini-4-neon-high`, hết quota thì fallback `agy --model gemini-4-hydrogen-high`) review độc lập cùng một diff (quy trình ở [CLAUDE.md](CLAUDE.md)). Bên nào vẫn hết quota (kể cả sau fallback Hydrogen của `agy`) thì Opus thay bằng một **Opus native mới** (không mang ngữ cảnh phiên code), theo cùng quy tắc dưới. Reviewer chỉ đọc, không sửa file, không commit; mục tiêu là **tìm lỗi**, không xác nhận cho qua.
 - Lấy diff bằng đúng lệnh Opus đưa: `git diff dev...task/<id>` cho cả task, `git diff PREV..task/<id>` cho bản sửa ở vòng review lại; xem `--stat` trước rồi mới đọc từng file. Không checkout, không commit, không merge; đọc file trong working tree (Opus giữ ở `task/<id>`) hoặc `git show task/<id>:<file>`. Đọc code xung quanh và consumer **trực tiếp**. Tìm lỗi theo 5 dạng trong [CLAUDE.md](CLAUDE.md).
 - Finding phải có mức độ, `file:dòng`, tình huống gây lỗi, tác động, yêu cầu sửa và **ca tái hiện** (lệnh hoặc đoạn test nhỏ) để Opus dựng regression test. Không có ca tái hiện thì ghi rõ là nghi vấn.
 - **Không chạy lệnh nặng** (hai reviewer chạy song song trên cùng máy): chỉ đọc file thuộc diff và nơi gọi trực tiếp; không grep cả repo; không chạy cả bộ test hay model nặng; chỉ chạy test liên quan với dữ liệu nhỏ theo [README.md](README.md). Ghi rõ lệnh đã chạy và giới hạn.
