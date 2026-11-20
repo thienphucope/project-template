@@ -13,4 +13,4 @@
 - `docs/glossary.md`: 1 file phẳng cho toàn dự án.
 - `docs/adr/NNNN-<slug>.md`: quyết định kiến trúc khó đảo ngược.
 - `docs/progress/done/<module>/<id>.md` & `docs/progress/undone/<module>/<id>.md`: mỗi module là 1 thư mục, có `README.md` làm index nhỏ của module đó.
-- Prefix `_` (vd `_work/`, `_template-module/`): dữ liệu dẫn xuất / mẫu dùng tạm hoặc xoá được.
+- Prefix `_` (vd `_tmp/`, `_template-module/`): dữ liệu dẫn xuất / mẫu dùng tạm hoặc xoá được.

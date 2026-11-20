@@ -1,6 +1,6 @@
 # Project Template
 
-Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**GPT (`codex`) + Gemini (`agy`) + Claude Code (`Opus`)**) và bộ **Agent Skills** chuẩn hóa (tham khảo `mattpocock/skills`).
+Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**GPT (`codex`) + Gemini (`agy`) + Claude (`claude`)**) và bộ **Agent Skills** chuẩn hóa (tham khảo `mattpocock/skills`).
 
 ## Khởi tạo dự án mới từ template
 
@@ -30,7 +30,7 @@ Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**GPT (`codex`) +
 ```text
 .
 ├── AGENTS.md                     # Hướng dẫn cho GPT (codex) & Gemini (agy)
-├── CLAUDE.md                     # Hướng dẫn cho Claude Code (Opus)
+├── CLAUDE.md                     # Hướng dẫn cho Claude (`claude`)
 ├── .agents/
 │   ├── skills/                   # Nguồn duy nhất của 13 cross-project skills (commit lên Git)
 │   └── skills-index.md           # Backlog các skill còn lại để cân nhắc lấy thêm khi cần
@@ -41,7 +41,7 @@ Mẫu cấu trúc dự án kết hợp quy trình multi-agent (**GPT (`codex`) +
 └── docs/
     ├── glossary.md               # Thuật ngữ domain dùng chung (1 file phẳng)
     ├── adr/                      # Architecture Decision Records (0001-slug.md)
-    ├── guides/                   # Quy ước Git, đặt tên, hướng dẫn cố định
+    ├── guides/                   # Quy ước Git, review workflow, đặt tên, hướng dẫn cố định
     └── progress/
         ├── README.md             # Bảng điều phối tiến độ + Reminders / Ghi chú nhanh
         ├── done/<module>/        # Task đã xong + thiết kế hiện hành theo từng module

@@ -4,7 +4,7 @@
 
 - `main`: ổn định — docs + code đã chốt. Không code thẳng.
 - `dev`: nhánh làm việc chính.
-- `task/<ticket-id>`: mỗi ticket một branch rẽ từ `dev`. Commit implementation và các commit sửa review (`<area>: fix review <ticket> …`) trên đó; reviewer đọc diff bằng `git diff dev...task/<id>`. Đóng ticket xong thì `git merge --no-ff task/<id>` vào `dev` rồi xoá branch. Quy trình review ở [CLAUDE.md](../../CLAUDE.md).
+- `task/<ticket-id>`: mỗi ticket một branch rẽ từ `dev`. Commit implementation và các commit sửa review (`<area>: fix review <ticket> …`) trên đó; reviewer đọc diff bằng `git diff dev...task/<id>`. Đóng ticket xong thì `git merge --no-ff task/<id>` vào `dev` rồi xoá branch. Quy trình review ở [review-workflow.md](review-workflow.md).
 - Thử nghiệm lớn có khả năng vứt: `exp/<tên>`; merge về `dev` hoặc xoá.
 
 ## Commit message
@@ -21,7 +21,7 @@
 Rule:
 - Imperative (`add` không phải `added`), không chấm cuối, không emoji.
 - Một commit một chủ đề — refactor tách khỏi feature.
-- Commit phải chạy được: import và test liên quan pass.
+- Commit phải chạy được: build/import và test liên quan pass.
 
 ## Trước khi commit
 
